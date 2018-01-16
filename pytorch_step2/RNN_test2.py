@@ -14,6 +14,7 @@ data_csv = pd.read_csv('../CSV/test01.csv', usecols=[1])
 # plt.plot(data2_csv)
 # plt.show()
 
+
 # 去除数据集中的na
 data_csv = data_csv.dropna()
 dataset = data_csv.values  # shape (144, 1)
