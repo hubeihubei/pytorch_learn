@@ -14,7 +14,7 @@ LR = 0.001
 DOWNLOAD_MNIST = True
 # 训练集
 train_data = torchvision.datasets.MNIST(
-    root='./mnist',
+    root='../mnist',
     train=True,
     transform=torchvision.transforms.ToTensor(),
     download=DOWNLOAD_MNIST
@@ -27,7 +27,7 @@ print(train_data.train_data.size())  # torch.Size([60000, 28, 28])
 # Data Loader for easy mini-batch return in training, the image batch shape will be (50, 1, 28, 28)(batch_size,c,h,w)
 train_loader = Data.DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=True)
 # 测试集
-test_data = torchvision.datasets.MNIST(root='./mnist', train=False)
+test_data = torchvision.datasets.MNIST(root='../mnist', train=False)
 # shape from (2000, 28, 28) to (2000, 1, 28, 28), value in range(0,1)
 test_x = Variable(torch.unsqueeze(test_data.test_data, dim=1)).type(torch.FloatTensor)[:2000].cuda() / 255
 test_y = test_data.test_labels[:2000].cuda()
