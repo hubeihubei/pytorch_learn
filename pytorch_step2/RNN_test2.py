@@ -50,8 +50,7 @@ test_y = dataY[train_size:]
 class Lstm(nn.Module):
     def __init__(self):
         super(Lstm, self).__init__()
-        self.layer1 = nn.LSTM(input_size=2, hidden_size=6, num_layers=2)
-        # self.drop=nn.Dropout(0.5)
+        self.layer1 = nn.LSTM(input_size=2, hidden_size=6, num_layers=2,dropout=0.2)
         self.layer2 = nn.Linear(6, 1)
 
     def forward(self, x):
