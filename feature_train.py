@@ -75,7 +75,7 @@ for epoch in range(opt.epoch):
         loss.backward()
         optimizer.step()
         if step % 100 == 0:
-            print("loss:", running_loss / opt.bs * step, "accu:", running_accu / opt.bs * step)
+            print("loss:", running_loss / (opt.bs * step), "accu:", running_accu / (opt.bs * step))
 eplise_time = time.time() - since
 print("loss:", running_loss / feature_dataset_size['train'], 'accu:', running_accu / feature_dataset_size['train'],
       'Time:', eplise_time)
