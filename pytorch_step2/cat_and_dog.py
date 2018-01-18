@@ -13,9 +13,9 @@ import torchvision.transforms as transforms
 
 # 将训练集中的猫和狗图片进行分类
 def image_classifier():
-    root = "/home/wangyang/IdeaProjects/pytorch_learn/cat_and_dog/zip/"
-    val_path = "/home/wangyang/IdeaProjects/pytorch_learn/cat_and_dog/val/"
-    train_path = "/home/wangyang/IdeaProjects/pytorch_learn/cat_and_dog/train/"
+    root = "/home/wangyang/IdeaProjects/pytorch_learn/cat_and_dog/zip"
+    val_path = "/home/wangyang/IdeaProjects/pytorch_learn/cat_and_dog/val"
+    train_path = "/home/wangyang/IdeaProjects/pytorch_learn/cat_and_dog/train"
     datafiles = os.listdir(root)
     dog_files = list(filter(lambda x: x[:3] == 'dog' and os.path.isfile(root + x), datafiles))
     cat_files = list(filter(lambda x: x[:3] == 'cat' and os.path.isfile(root + x), datafiles))
