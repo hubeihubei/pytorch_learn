@@ -57,11 +57,13 @@ for epoch in range(opt.epoch):
     running_loss = 0.0
     running_accu = 0.0
     for step, (b_x, b_y) in enumerate(feature_dataloader['train']):
-        b_x = Variable(b_x)
-        b_y = Variable(b_y)
+
         if use_gpu:
-            b_x = b_x.cuda()
-            b_y = b_y.cuda()
+            b_x = Variable(b_x).cuda()
+            b_y = Variable(b_y).cuda()
+        else:
+            b_x = Variable(b_x)
+            b_y = Variable(b_y)
         out = mynet(b_x)
         loss = loss_func(out, b_y)
 
@@ -74,12 +76,10 @@ for epoch in range(opt.epoch):
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
-
-
         if step % 100 == 0 and step != 0:
             print("loss:", running_loss / (b_y.data.size(0) * step), "accu:", running_accu / (b_y.data.size(0) * step))
-    print(running_loss,running_accu,opt.bs,b_y.data.size(0),loss)
-    break;
+    # print(running_loss,running_accu,opt.bs,b_y.data.size(0),loss)
+    # break;
 
 eplise_time = time.time() - since
 print("loss:", running_loss / feature_dataset_size['train'], 'accu:', running_accu / feature_dataset_size['train'],
