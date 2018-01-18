@@ -76,8 +76,8 @@ for epoch in range(opt.epoch):
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
-        if step % 100 == 0 and step != 0:
-            print("loss:", running_loss / (b_y.data.size(0) * step), "accu:", running_accu / (b_y.data.size(0) * step))
+
+    print("loss:", running_loss / feature_dataset_size['train'], "accu:", running_accu / feature_dataset_size['train'])
     # print(running_loss,running_accu,opt.bs,b_y.data.size(0),loss)
     # break;
 
