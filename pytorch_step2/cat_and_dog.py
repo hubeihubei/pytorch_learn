@@ -37,7 +37,7 @@ def image_classifier():
         shutil.move(pic_path, obj_path)
 
 
-# image_classifier()
+image_classifier()
 def train():
     BATCH_SIZE = 32
     EPOCH = 5
