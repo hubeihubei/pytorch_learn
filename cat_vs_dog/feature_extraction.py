@@ -9,7 +9,7 @@ import torchvision
 import torchvision.transforms as transforms
 from torchvision.datasets import ImageFolder
 import torch.utils.data as Data
-from  cat_vs_dog.feature_net import feature_net
+from . import Net as Net
 
 parse = argparse.ArgumentParser()
 parse.add_argument('--model', required=True, help='vgg,inceptionv3,resnet152')
@@ -61,9 +61,9 @@ use_gpu = torch.cuda.is_available()
 
 def CreateFeature(model, phase, outpath='.'):
     if use_gpu:
-        net = feature_net(model).cuda()
+        net = Net.feature_net(model).cuda()
     else:
-        net = feature_net(model)
+        net = Net.feature_net(model)
 
     feature_map = torch.FloatTensor()
     label_map = torch.LongTensor()
