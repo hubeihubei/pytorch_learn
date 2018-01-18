@@ -95,14 +95,14 @@ for step, (t_x, t_y) in enumerate(feature_dataloader['val']):
         t_x = t_x.cuda()
         t_y = t_y.cuda()
     out = mynet(t_x)
-    val_loss = loss_func(out, t_y)
+    loss = loss_func(out, t_y)
     if use_gpu:
         val_prediction = torch.max(out, 1)[1].cuda()
     else:
         val_prediction = torch.max(out, 1)[1]
-    val_loss += t_y.data.size(0) * val_loss.data[0]
+    val_loss += t_y.data.size(0) * loss.data[0]
     val_accu += sum(val_prediction.cpu().data == t_y.cpu().data)
 print("loss:", val_loss / feature_dataset_size['val'], 'accu:', val_accu / feature_dataset_size['val'])
 print("Finish Training")
 
-torch.save(mynet, '/model/feature_model.pth')
+torch.save(mynet, './model/feature_model.pth')
