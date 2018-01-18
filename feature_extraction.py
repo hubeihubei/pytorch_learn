@@ -15,10 +15,9 @@ parse = argparse.ArgumentParser()
 parse.add_argument('--model', required=True, help='vgg,inceptionv3,resnet152')
 parse.add_argument('--phase', required=True, help='train,val')
 parse.add_argument('--bs', required=True, help='batch_size', default=32)
-parse.add_argument('--gpu', required=True, help='0,1', default=0)
 opt = parse.parse_args()
 BATCH_SIZE = 32
-torch.cuda.set_device(opt.gpu)
+
 transform_compose = {
     'train': transforms.Compose([
         transforms.RandomSizedCrop(299),
