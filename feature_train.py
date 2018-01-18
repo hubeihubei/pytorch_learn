@@ -68,13 +68,14 @@ for epoch in range(opt.epoch):
             prediction = torch.max(out, 1)[1].cuda()
         else:
             prediction = torch.max(out, 1)[1]
-        running_loss = b_y.data.size(0) * loss.data[0]
+        running_loss += b_y.data.size(0) * loss.data[0]
         running_accu += sum(prediction.cpu().data == b_y.cpu().data)
+        print(running_accu)
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
         if step % 100 == 0 and step != 0:
-            print("loss:", running_loss / (opt.bs * step), "accu:", running_accu / (opt.bs * step))
+            print("loss:", running_loss / (b_y.data.size(0) * step), "accu:", running_accu / (b_y.data.size(0) * step))
 eplise_time = time.time() - since
 print("loss:", running_loss / feature_dataset_size['train'], 'accu:', running_accu / feature_dataset_size['train'],
       'Time:', eplise_time)
