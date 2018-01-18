@@ -10,7 +10,7 @@ from cat_vs_dog.dataset import h5DataSet
 from cat_vs_dog.Net import classifier
 import sys
 
-sys.path.append('..')
+sys.path.append('../cat_vs_dog')
 sys.path.append('.')
 params = argparse.ArgumentParser()
 params.add_argument("--model", help='vgg,resnet152,inceptionv3', nargs="+", default=['vgg', 'resnet152', 'inceptionv3'])
