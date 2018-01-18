@@ -7,7 +7,6 @@ import torchvision.transforms as transforms
 import torch.utils.data as Data
 import argparse
 import sys
-sys.path.append('../cat_vs_dog')
 from cat_vs_dog.dataset import h5DataSet
 from cat_vs_dog.Net import classifier
 
