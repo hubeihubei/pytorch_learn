@@ -8,12 +8,13 @@ import torch.utils.data as Data
 import argparse
 from .dataset import h5DataSet
 from .Net import classifier
+import sys
 
+sys.path.append('..')
 params = argparse.ArgumentParser()
 params.add_argument("--model", help='vgg,resnet152,inceptionv3', nargs="+", default=['vgg', 'resnet152', 'inceptionv3'])
 params.add_argument('--epoch', default=20, type=int)
 params.add_argument('--bs', default=32, type=int)
-params.add_argument('--path', default='/feature_model.pth')
 params.add_argument('--num_workers', default=8, type=int)
 params.add_argument('--n_classes', default=2, type=int)
 opt = params.parse_args()

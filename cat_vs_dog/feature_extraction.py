@@ -9,7 +9,7 @@ import torchvision
 import torchvision.transforms as transforms
 from torchvision.datasets import ImageFolder
 import torch.utils.data as Data
-from cat_vs_dog.Net import feature_net
+from .Net import feature_net
 
 parse = argparse.ArgumentParser()
 parse.add_argument('--model', required=True, help='vgg,inceptionv3,resnet152')
