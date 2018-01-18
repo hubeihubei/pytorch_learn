@@ -37,7 +37,7 @@ class AutoEncoder(torch.nn.Module):
             torch.nn.Linear(32, 16),
             torch.nn.Tanh(),
             torch.nn.Linear(16, 3),
-            # torch.nn.Tanh(),
+
         )
         self.decoder = torch.nn.Sequential(
             torch.nn.Linear(3, 16),

@@ -29,7 +29,7 @@ class feature_net(nn.Module):
             self.feature = nn.Sequential(*list(inceptionv3.children())[:-1])
             # inception_v3的第13层也是全连接，需要去除
             self.feature._modules.pop("13")
-            self.feature.add_module("global average", nn.AvgPool2d())
+            self.feature.add_module("global average", nn.AvgPool2d(35))
         elif model == 'resnet152':
             resnet = models.resnet152(pretrained=True)
             # resnet 倒数第二层为 AvgPool2d(),所以不需要再加

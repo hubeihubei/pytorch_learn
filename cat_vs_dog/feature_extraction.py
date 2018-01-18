@@ -34,10 +34,10 @@ transform_compose = {
     ])
 
 }
-root='/home/wangyang/IdeaProjects/pytorch_learn/cat_and_dog/'
+root = '/home/wangyang/IdeaProjects/pytorch_learn/cat_and_dog/'
 data_folder = {
-    "train": ImageFolder(root=root+"train/", transform=transform_compose['train']),
-    'val': ImageFolder(root=root+"val/", transform=transform_compose['val'])
+    "train": ImageFolder(root=root + "train/", transform=transform_compose['train']),
+    'val': ImageFolder(root=root + "val/", transform=transform_compose['val'])
 }
 
 dataLoader = {
@@ -69,19 +69,17 @@ def CreateFeature(model, phase, outpath='.'):
     label_map = torch.LongTensor()
     for step, (b_x, b_y) in enumerate(dataLoader['train']):
         if use_gpu:
-            b_x = Variable(b_x).cuda()
-            b_y = Variable(b_y).cuda()
+            b_x = Variable(b_x, volatile=True).cuda()
         else:
-            b_x = Variable(b_x)
-            b_y = Variable(b_y)
+            b_x = Variable(b_x, volatile=True)
         out = net(b_x)
         feature_map = torch.cat((feature_map, out.cpu().data), 0)
-        label_map = torch.cat((label_map, b_y.cpu().data), 0)
+        label_map = torch.cat((label_map, b_y), 0)
 
     feature_map = feature_map.numpy()
     label_map = label_map.numpy()
 
-    fileName = "_feature_'{}.hd5f".format(model)
+    fileName = "_feature_{}.hd5f".format(model)
     h5py_path = os.path.join(outpath, phase) + fileName
     with h5py.File(h5py_path, 'w') as h:
         h.create_dataset('data', feature_map)
