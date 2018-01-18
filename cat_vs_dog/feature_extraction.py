@@ -16,7 +16,7 @@ parse.add_argument('--model', required=True, help='vgg,inceptionv3,resnet152')
 parse.add_argument('--phase', required=True, help='train,val')
 parse.add_argument('--bs', required=True, help='batch_size', default=32)
 opt = parse.parse_args()
-BATCH_SIZE = 32
+
 
 transform_compose = {
     'train': transforms.Compose([
@@ -42,14 +42,14 @@ data_folder = {
 dataLoader = {
     'train': Data.DataLoader(
         dataset=data_folder['train'],
-        batch_size=BATCH_SIZE,
+        batch_size=opt.bs,
         # 提取特征向量时，数据是不能随机打乱的，因为使用多个模型，每次随机大乱斗会造成标签混乱
         shuffle=False,
         num_workers=4
     ),
     'val': Data.DataLoader(
         dataset=data_folder['val'],
-        batch_size=BATCH_SIZE,
+        batch_size=opt.bs,
         shuffle=False,
         num_workers=4
     )
