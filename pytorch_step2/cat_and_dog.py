@@ -150,31 +150,31 @@ def train():
 
 
 
-data_transforms = {
-    'train': transforms.Compose([
-        transforms.RandomSizedCrop(299),
-        transforms.RandomHorizontalFlip(),
-        transforms.ToTensor(),
-        transforms.Normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5])
-    ]),
-    'val': transforms.Compose([
-        transforms.Scale(320),
-        transforms.CenterCrop(299),
-        transforms.ToTensor(),
-        transforms.Normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5])
-    ])
-}
-
-model=torch.load("../model/cat_vs_dog.pkl")
-test_dataset=torchvision.datasets.ImageFolder(root='../cat_and_dog/val/', transform=data_transforms['val'])
-test_dataloader=Data.DataLoader(dataset=test_dataset,batch_size=10,shuffle=True)
-pre_list=[]
-rel_list=[]
-for i,(b_x,b_y)in enumerate(test_dataloader):
-    out=model(Variable(b_x).cuda())
-    pre=torch.max(out,1)[1].cuda()
-    pre_list.append(pre)
-    rel_list.append(b_y)
-    if i ==0:
-        break
-print("rel_list:",rel_list,"pre_list:",pre_list)
+# data_transforms = {
+#     'train': transforms.Compose([
+#         transforms.RandomSizedCrop(299),
+#         transforms.RandomHorizontalFlip(),
+#         transforms.ToTensor(),
+#         transforms.Normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5])
+#     ]),
+#     'val': transforms.Compose([
+#         transforms.Scale(320),
+#         transforms.CenterCrop(299),
+#         transforms.ToTensor(),
+#         transforms.Normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5])
+#     ])
+# }
+#
+# model=torch.load("../model/cat_vs_dog.pkl")
+# test_dataset=torchvision.datasets.ImageFolder(root='../cat_and_dog/val/', transform=data_transforms['val'])
+# test_dataloader=Data.DataLoader(dataset=test_dataset,batch_size=10,shuffle=True)
+# pre_list=[]
+# rel_list=[]
+# for i,(b_x,b_y)in enumerate(test_dataloader):
+#     out=model(Variable(b_x).cuda())
+#     pre=torch.max(out,1)[1].cuda()
+#     pre_list.append(pre)
+#     rel_list.append(b_y)
+#     if i ==0:
+#         break
+# print("rel_list:",rel_list,"pre_list:",pre_list)
