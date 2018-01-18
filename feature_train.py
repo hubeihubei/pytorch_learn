@@ -49,12 +49,13 @@ if use_gpu:
 
 optimizer = torch.optim.Adam(mynet.parameters(), lr=1e-3)
 
-running_loss = 0.0
-running_accu = 0.0
+
 since = time.time()
 mynet.train()
 for epoch in range(opt.epoch):
     print(epoch)
+    running_loss = 0.0
+    running_accu = 0.0
     for step, (b_x, b_y) in enumerate(feature_dataloader['train']):
         b_x = Variable(b_x)
         b_y = Variable(b_y)
@@ -94,7 +95,7 @@ for step, (t_x, t_y) in enumerate(feature_dataloader['val']):
         val_prediction = torch.max(out, 1)[1].cuda()
     else:
         val_prediction = torch.max(out, 1)[1]
-    val_loss = t_y.data.size(0) * val_loss.data[0]
+    val_loss += t_y.data.size(0) * val_loss.data[0]
     val_accu += sum(val_prediction.cpu().data == t_y.cpu().data)
 print("loss:", val_loss / feature_dataset_size['val'], 'accu:', val_accu / feature_dataset_size['val'])
 print("Finish Training")
