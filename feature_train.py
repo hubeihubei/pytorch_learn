@@ -41,7 +41,7 @@ feature_dataset_size = {
 }
 
 use_gpu = torch.cuda.is_available()
-dimension = feature_dataset['train'].size(1)
+dimension = feature_dataset['train'].dataset.size(1)
 mynet = classifier(dimension, opt.n_classes)
 loss_func = nn.CrossEntropyLoss()
 if use_gpu:
