@@ -70,7 +70,7 @@ for epoch in range(opt.epoch):
         else:
             prediction = torch.max(out, 1)[1]
         running_loss += b_y.data.size(0) * loss.data[0]
-        running_accu += sum(prediction.cpu().data == b_y.cpu().data)
+        running_accu += torch.sum(prediction.cpu().data == b_y.cpu().data)
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
