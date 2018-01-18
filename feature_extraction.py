@@ -60,9 +60,9 @@ use_gpu = torch.cuda.is_available()
 
 def CreateFeature(model, phase, outpath='.'):
     if use_gpu:
-        net = feature_net.feature_net(model).cuda()
+        net = feature_net(model).cuda()
     else:
-        net = feature_net.feature_net(model)
+        net = feature_net(model)
 
     feature_map = torch.FloatTensor()
     label_map = torch.LongTensor()
