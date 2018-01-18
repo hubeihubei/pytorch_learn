@@ -74,12 +74,12 @@ for epoch in range(opt.epoch):
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
-        print(running_loss,running_accu,opt.bs,b_y.data.size(0))
-        if step==0:
-            break
+
+
         if step % 100 == 0 and step != 0:
             print("loss:", running_loss / (b_y.data.size(0) * step), "accu:", running_accu / (b_y.data.size(0) * step))
-
+    print(running_loss,running_accu,opt.bs,b_y.data.size(0),loss)
+    break;
 
 eplise_time = time.time() - since
 print("loss:", running_loss / feature_dataset_size['train'], 'accu:', running_accu / feature_dataset_size['train'],
