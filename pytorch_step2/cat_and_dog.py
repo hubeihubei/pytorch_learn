@@ -17,8 +17,8 @@ def image_classifier():
     val_path = "/home/wangyang/IdeaProjects/pytorch_learn/cat_and_dog/val"
     train_path = "/home/wangyang/IdeaProjects/pytorch_learn/cat_and_dog/train"
     datafiles = os.listdir(root)
-    dog_files = list(filter(lambda x: x[:3] == 'dog' and os.path.isfile(root + x), datafiles))
-    cat_files = list(filter(lambda x: x[:3] == 'cat' and os.path.isfile(root + x), datafiles))
+    dog_files = list(filter(lambda x: x[:3] == 'dog', datafiles))
+    cat_files = list(filter(lambda x: x[:3] == 'cat', datafiles))
 
     for i in range(len(dog_files)):
         pic_path = root + '/' + dog_files[i]
