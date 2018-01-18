@@ -6,11 +6,12 @@ from torch.autograd import Variable
 import torchvision.transforms as transforms
 import torch.utils.data as Data
 import argparse
-from .dataset import h5DataSet
-from .Net import classifier
+from cat_vs_dog.dataset import h5DataSet
+from cat_vs_dog.Net import classifier
 import sys
 
 sys.path.append('..')
+sys.path.append('.')
 params = argparse.ArgumentParser()
 params.add_argument("--model", help='vgg,resnet152,inceptionv3', nargs="+", default=['vgg', 'resnet152', 'inceptionv3'])
 params.add_argument('--epoch', default=20, type=int)
