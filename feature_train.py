@@ -45,7 +45,7 @@ mynet = classifier(dimension, opt.n_classes)
 loss_func = nn.CrossEntropyLoss()
 if use_gpu:
     mynet = mynet.cuda()
-    loss_func = nn.CrossEntropyLoss().cuda()
+    loss_func = loss_func.cuda()
 
 optimizer = torch.optim.Adam(mynet.parameters(), lr=1e-3)
 
@@ -74,8 +74,13 @@ for epoch in range(opt.epoch):
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
+        print(running_loss,running_accu,opt.bs,b_y.data.size(0))
+        if step==0:
+            break
         if step % 100 == 0 and step != 0:
             print("loss:", running_loss / (b_y.data.size(0) * step), "accu:", running_accu / (b_y.data.size(0) * step))
+
+
 eplise_time = time.time() - since
 print("loss:", running_loss / feature_dataset_size['train'], 'accu:', running_accu / feature_dataset_size['train'],
       'Time:', eplise_time)
@@ -100,4 +105,4 @@ for step, (t_x, t_y) in enumerate(feature_dataloader['val']):
 print("loss:", val_loss / feature_dataset_size['val'], 'accu:', val_accu / feature_dataset_size['val'])
 print("Finish Training")
 
-torch.save(mynet, '../model/feature_model.pth')
+torch.save(mynet, '/model/feature_model.pth')
