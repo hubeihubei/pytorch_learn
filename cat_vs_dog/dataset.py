@@ -1,5 +1,5 @@
 import torch
-import torch.utils.data as Dataset
+from torch.utils.data import Dataset
 import h5py
 
 
@@ -7,7 +7,8 @@ class h5DataSet(Dataset):
     def __init__(self, h5py_list):
         label_file = h5py.File(h5py_list[0], 'r')
         self.label = torch.from_numpy(label_file['label'].value)
-        temp_dataset = torch.FloatTensor
+        temp_dataset = torch.FloatTensor()
+        self.nSamples = self.label.size(0)
         for file in h5py_list:
             h5_file = h5py.File(file, 'r')
             dataset = torch.from_numpy(h5_file['data'].value)
@@ -15,7 +16,7 @@ class h5DataSet(Dataset):
         self.dataset = temp_dataset
 
     def __len__(self):
-        return self.label.size(0)
+        return self.nSamples
 
     def __getitem__(self, index):
         assert index < len(self), 'index range error'

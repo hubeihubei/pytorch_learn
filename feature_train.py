@@ -3,10 +3,8 @@ import torch
 import torchvision
 import torch.nn as nn
 from torch.autograd import Variable
-import torchvision.transforms as transforms
 import torch.utils.data as Data
 import argparse
-import sys
 from cat_vs_dog.dataset import h5DataSet
 from cat_vs_dog.Net import classifier
 
@@ -19,12 +17,14 @@ params.add_argument('--num_workers', default=8, type=int)
 params.add_argument('--n_classes', default=2, type=int)
 opt = params.parse_args()
 
-root = '../cat_and_dog/'
+root = 'home/wangyang/IdeaProjects/pytorch_learn/cat_and_dog/'
 train_list_hd5f = [root + 'train_feature_{}.hd5f'.format(i) for i in opt.model]
+print(train_list_hd5f)
 val_list_hd5f = [root + 'val_feature_{}.hd5f'.format(i) for i in opt.model]
+print(val_list_hd5f)
 feature_dataset = {
-    'train': h5DataSet[train_list_hd5f],
-    'val': h5DataSet[val_list_hd5f]
+    'train': h5DataSet(train_list_hd5f),
+    'val': h5DataSet(val_list_hd5f)
 }
 feature_dataloader = {
     'train': Data.DataLoader(
