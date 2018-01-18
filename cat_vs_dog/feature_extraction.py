@@ -1,6 +1,6 @@
 import argparse
 import os
-
+import sys
 import h5py
 import torch
 import torch.nn as nn
@@ -9,14 +9,14 @@ import torchvision
 import torchvision.transforms as transforms
 from torchvision.datasets import ImageFolder
 import torch.utils.data as Data
-from cat_vs_dog.feature_net import feature_net
+from  cat_vs_dog.feature_net import feature_net
 
 parse = argparse.ArgumentParser()
 parse.add_argument('--model', required=True, help='vgg,inceptionv3,resnet152')
 parse.add_argument('--phase', required=True, help='train,val')
 parse.add_argument('--bs', required=True, help='batch_size', default=32)
 opt = parse.parse_args()
-
+sys.path.append('/home/wangyang/IdeaProjects/pytorch_learn/')
 BATCH_SIZE = 32
 
 transform_compose = {
