@@ -17,7 +17,7 @@ params.add_argument('--num_workers', default=8, type=int)
 params.add_argument('--n_classes', default=2, type=int)
 opt = params.parse_args()
 
-root = 'home/wangyang/IdeaProjects/pytorch_learn/cat_and_dog/'
+root = '/home/wangyang/IdeaProjects/pytorch_learn/cat_and_dog/'
 train_list_hd5f = [root + 'train_feature_{}.hd5f'.format(i) for i in opt.model]
 print(train_list_hd5f)
 val_list_hd5f = [root + 'val_feature_{}.hd5f'.format(i) for i in opt.model]
