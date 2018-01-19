@@ -38,7 +38,7 @@ for epoch in range(EPOCH):
         loss.backward()
         optimization.step()
         acc = sum(optimize.data == b_y.data) / b_x.size(0)
-        if step % 500 == 0:
+        if step % 50 == 0:
             print('loss:', loss, "acc:", acc)
 
 
