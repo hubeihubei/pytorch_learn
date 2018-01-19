@@ -43,14 +43,14 @@ def train():
     EPOCH = 5
     data_transforms = {
         'train': transforms.Compose([
-            transforms.RandomSizedCrop(299),
+            transforms.RandomSizedCrop(224),
             transforms.RandomHorizontalFlip(),
             transforms.ToTensor(),
             transforms.Normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5])
         ]),
         'val': transforms.Compose([
             transforms.Scale(320),
-            transforms.CenterCrop(299),
+            transforms.CenterCrop(224),
             transforms.ToTensor(),
             transforms.Normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5])
         ])
