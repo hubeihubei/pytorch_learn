@@ -40,7 +40,7 @@ def image_classifier():
 # image_classifier()
 def train():
     BATCH_SIZE = 32
-    EPOCH = 5
+    EPOCH = 20
     data_transforms = {
         'train': transforms.Compose([
             transforms.RandomSizedCrop(224),
