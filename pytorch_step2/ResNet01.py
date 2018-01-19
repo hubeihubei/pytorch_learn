@@ -25,7 +25,7 @@ test_dataset = CIFAR10(root='../cifar10', train=False, transform=transforms.ToTe
 
 train_loader = Data.DataLoader(dataset=train_dataset, batch_size=opt.bs, shuffle=True,num_workers=opt.num_workers)
 test_loader = Data.DataLoader(dataset=test_dataset, batch_size=opt.bs, shuffle=True,num_workers=opt.num_workers)
-n_classes=len(train_dataset.dataset.size(0))
+n_classes=10
 resNet = torchvision.models.resnet18(pretrained=True).cuda()
 dim_in = resNet.fc.in_features
 resNet.fc=nn.Linear(dim_in,n_classes)
