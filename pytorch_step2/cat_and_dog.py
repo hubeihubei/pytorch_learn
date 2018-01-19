@@ -148,7 +148,7 @@ def train():
     print("eval loss:",eval_loss/len(val_loader.dataset),'eval accu:',eval_accu/len(val_loader.dataset))
 
 
-
+train()
 
 # data_transforms = {
 #     'train': transforms.Compose([
@@ -178,6 +178,3 @@ def train():
 #     if i ==0:
 #         break
 # print("rel_list:",rel_list,"pre_list:",pre_list)
-
-if __name__ == '__main__':
-    train()

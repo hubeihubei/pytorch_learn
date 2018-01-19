@@ -11,7 +11,7 @@ from torchvision.datasets import CIFAR10
 
 BATCH_SIZE = 64
 LR = 0.001
-EPOCH = 20
+EPOCH = 30
 DOWNLOAD_DATASET = True
 train_transform = torchvision.transforms.Compose([transforms.Scale(256), transforms.RandomHorizontalFlip(),
                                                   transforms.RandomCrop(224), transforms.ToTensor(),
@@ -42,3 +42,4 @@ for epoch in range(EPOCH):
             print('loss:', loss, "acc:", acc)
 
 
+torch.save(resNet,"../model/resNet.pth")
