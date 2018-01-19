@@ -26,12 +26,12 @@ test_dataset = CIFAR10(root='../cifar10', train=False, transform=transforms.ToTe
 train_loader = Data.DataLoader(dataset=train_dataset, batch_size=opt.bs, shuffle=True,num_workers=opt.num_workers)
 test_loader = Data.DataLoader(dataset=test_dataset, batch_size=opt.bs, shuffle=True,num_workers=opt.num_workers)
 n_classes=10
-resNet = torchvision.models.resnet18(pretrained=True).cuda()
+resNet = torchvision.models.resnet18(pretrained=True)
 dim_in = resNet.fc.in_features
 resNet.fc=nn.Linear(dim_in,n_classes)
 optimization = torch.optim.Adam(resNet.parameters(), lr=opt.lr)
 loss_func = torch.nn.CrossEntropyLoss().cuda()
-
+resNet=resNet.cuda()
 for epoch in range(opt.epoch):
     print(epoch)
     for step, (b_x, b_y) in enumerate(train_loader):
