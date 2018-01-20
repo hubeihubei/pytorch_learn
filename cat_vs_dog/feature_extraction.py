@@ -80,6 +80,7 @@ def CreateFeature(model, phase, outpath='.'):
 
     fileName = "_feature_{}.hd5f".format(model)
     h5py_path = os.path.join(outpath, phase) + fileName
+
     with h5py.File(h5py_path, 'w') as h:
         h.create_dataset('data', data=feature_map)
         h.create_dataset('label', data=label_map)
