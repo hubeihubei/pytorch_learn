@@ -3,3 +3,4 @@ cifar10
 mnist
 model
 cat_and_dog
+h5py_data/*.hd5f
