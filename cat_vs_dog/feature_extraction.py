@@ -20,14 +20,14 @@ opt = parse.parse_args()
 
 transform_compose = {
     'train': transforms.Compose([
-        transforms.RandomSizedCrop(299),
+        transforms.RandomSizedCrop(224),
         transforms.RandomHorizontalFlip(),
         transforms.ToTensor(),
         transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
     ]),
     'val': transforms.Compose([
-        transforms.Scale(320),
-        transforms.CenterCrop(299),
+        transforms.Scale(250),
+        transforms.CenterCrop(224),
         transforms.ToTensor(),
         transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
     ])

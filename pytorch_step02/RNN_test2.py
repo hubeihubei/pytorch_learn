@@ -20,9 +20,10 @@ data_csv = data_csv.dropna()
 dataset = data_csv.values  # shape (144, 1)
 # 转换为float32
 dataset = dataset.astype('float32')
-# 归一
-max_value = np.max(dataset)
-dataset = list(map(lambda x: x / max_value, dataset))  # list len:144
+# 归一 新数据=（原数据-最小值）/（最大值-最小值）
+# max_value = np.max(dataset)
+max_value = np.max(dataset)-np.min(dataset)
+dataset = list(map(lambda x: x-np.min(dataset) / max_value, dataset))  # list len:144
 
 
 def create_dataset(dataset, look_back):
