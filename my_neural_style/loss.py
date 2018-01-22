@@ -14,8 +14,8 @@ class Content_loss(nn.Module):
         out = input.clone()
         return out
 
-    def backward(self, retain_variables):
-        self.loss.backward(retain_variables=retain_variables)
+    def backward(self, retain_graph=True):
+        self.loss.backward(retain_graph=retain_graph)
         return self.loss
 
 
@@ -45,6 +45,6 @@ class Style_loss(nn.Module):
         out=input.clone()
         return out
 
-    def backward(self,retain_graph):
+    def backward(self,retain_graph=True):
         self.loss.backward(retain_graph=retain_graph)
         return self.loss
